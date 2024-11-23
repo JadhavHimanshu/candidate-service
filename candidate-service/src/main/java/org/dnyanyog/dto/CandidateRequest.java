@@ -75,7 +75,6 @@ public class CandidateRequest {
 
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
-	} 
-	
+	}
 
 }

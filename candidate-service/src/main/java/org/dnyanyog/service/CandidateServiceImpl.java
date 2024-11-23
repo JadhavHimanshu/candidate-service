@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
-@Component
 public class CandidateServiceImpl implements CandidateService {
 	@Autowired
 	CandidateRepo repo;
@@ -37,75 +36,84 @@ public class CandidateServiceImpl implements CandidateService {
 		response.setMiddleName(data.getMiddleName());
 		response.setEmail(data.getEmail());
 		response.setMobile(data.getMobile());
-		response.setVacancy(data.getVacancy());  
-		 response.setResumeMediaId(data.getResumeMediaId());
+		response.setVacancy(data.getVacancy());
+		response.setResumeMediaId(data.getResumeMediaId());
 
 		return response;
 	}
 
-//	@Override
-//	public CandidateResponse findCandidateById(String resumeMediaId) {
-//		CandidateResponse response = new CandidateResponse();
-//		Optional<Candidate> candidateData = this.repo.findById(resumeMediaId);
-//		if (candidateData.isEmpty()) {
-//			response.setMessage("Candidate Not found ");
-//			response.setResponseCode("911");
-//		} else {
-//			Candidate candidate = candidateData.get();
-//			response.setMessage("User  Found ");
-//			response.setResponseCode("0000");
-//			response.setFirstName(candidate.getFirstName());
-//			response.setMiddleName(candidate.getMiddleName());
-//			response.setLastName(candidate.getLastName());
-//			response.setEmail(candidate.getEmail());
-//			response.setMobile(candidate.getMobile());
-//			response.setVacancy(candidate.getVacancy());
-//
-//		}
-//
-//		return response;
-//	}
-//
-//	@Override
-//	public CandidateResponse updateCandidate(String resumeMediaId, CandidateRequest request) {
-//		CandidateResponse response = new CandidateResponse();
-//		Optional<Candidate> candidateData = this.repo.findById(resumeMediaId);
-//		if (candidateData.isPresent()) {
-//			Candidate candidate = candidateData.get();
-//			candidate.setFirstName(request.getFirstName());
-//			candidate.setMiddleName(request.getMiddleName());
-//			candidate.setLastName(request.getLastName());
-//			candidate.setEmail(request.getEmail());
-//			candidate.setMobile(request.getMobile());
-//			candidate.setVacancy(request.getVacancy());
-//			candidate.setResumeMediaId(request.getResumeMediaId());
-//			candidate = repo.save(candidate);
-//			response.setMessage(" Candidate Updated ");
-//			response.setResponseCode("0000");
-//
-//		} else {
-//			response.setMessage(" User Not Found ");
-//			response.setResponseCode("911");
-//		}
-//
-//		return response;
-//	}
-//
-//	@Override
-//	public CandidateResponse deleteCandidateById(String resumeMediaId) {
-//		CandidateResponse response = new CandidateResponse();
-//		Optional<Candidate> candidateData = this.repo.findById(resumeMediaId);
-//		if (candidateData.isPresent()) {
-//			repo.deleteById(resumeMediaId);
-//			response.setMessage("User Deleted Sucessfully");
-//			response.setResponseCode("0000");
-//
-//		} else {
-//			response.setMessage(" Candidate Not Found ");
-//			response.setResponseCode("911");
-//		}
-//
-//		return response;
-//	}
+	@Override
+	public CandidateResponse findByresumeMediaId(Integer resumeMediaId) {
+		CandidateResponse response = new CandidateResponse();
+		Optional<Candidate> candidateData = repo.findByresumeMediaId(resumeMediaId);
+		if (candidateData.isEmpty()) {
+			response.setMessage("Candidate Not found ");
+			response.setResponseCode("911");
+		} else {
+			Candidate candidate = candidateData.get();
+			response.setMessage("User  Found ");
+			response.setResponseCode("0000");
+			response.setFirstName(candidate.getFirstName());
+			response.setMiddleName(candidate.getMiddleName());
+			response.setLastName(candidate.getLastName());
+			response.setEmail(candidate.getEmail());
+			response.setMobile(candidate.getMobile());
+			response.setVacancy(candidate.getVacancy());
+			response.setResumeMediaId(candidate.getResumeMediaId());
+
+		}
+
+		return response;
+	}
+
+	@Override
+	public CandidateResponse updateCandidate(CandidateRequest request) {
+		CandidateResponse response = new CandidateResponse();
+		Optional<Candidate> candidateData = this.repo.findByresumeMediaId(request.getResumeMediaId());
+		if (candidateData.isPresent()) {
+			Candidate candidate = candidateData.get();
+			candidate.setFirstName(request.getFirstName());
+			candidate.setMiddleName(request.getMiddleName());
+			candidate.setLastName(request.getLastName());
+			candidate.setEmail(request.getEmail());
+			candidate.setMobile(request.getMobile());
+			candidate.setVacancy(request.getVacancy());
+			candidate = repo.save(candidate);
+			response.setMessage(" Candidate Updated ");
+			response.setResponseCode("0000");
+
+			response.setFirstName(candidate.getFirstName());
+			response.setMiddleName(candidate.getMiddleName());
+			response.setLastName(candidate.getLastName());
+			response.setEmail(candidate.getEmail());
+			response.setMobile(candidate.getMobile());
+			response.setVacancy(candidate.getVacancy());
+			response.setResumeMediaId(candidate.getResumeMediaId());
+
+		} else {
+			response.setMessage(" User Not Found ");
+			response.setResponseCode("911");
+		}
+
+		return response;
+	}
+
+	@Override
+	public CandidateResponse deleteByresumeMediaId(long resumeMediaId) {
+		CandidateResponse response = new CandidateResponse();
+		Optional<Candidate> candidateData = this.repo.deleteByresumeMediaId(resumeMediaId);
+		if (candidateData.isPresent()) {
+
+			repo.deleteByresumeMediaId(resumeMediaId);
+			response.setMessage("User Deleted Sucessfully");
+			response.setResponseCode("0000");
+
+		} else {
+			response.setMessage(" Candidate Not Found ");
+			response.setResponseCode("911");
+		}
+
+		return response;
+	}
 
 }

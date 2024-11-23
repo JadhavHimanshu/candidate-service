@@ -2,20 +2,22 @@ package org.dnyanyog.dto;
 
 import org.springframework.stereotype.Component;
 
-@Component 
-public class CandidateResponse { 
-	 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@Component
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CandidateResponse {
+
 	public String message;
-	public String responseCode;  
+	public String responseCode;
 	public String firstName;
 	public String middleName;
 	public String lastName;
 	public int vacancy;
 	public String email;
 	public int mobile;
-	public int resumeMediaId;
-	public String tenant ; 
-
+	public long resumeMediaId;
+	public String tenant;
 
 	public String getMessage() {
 		return message;
@@ -81,11 +83,11 @@ public class CandidateResponse {
 		this.mobile = mobile;
 	}
 
-	public int getResumeMediaId() {
+	public long getResumeMediaId() {
 		return resumeMediaId;
 	}
 
-	public void setResumeMediaId(int resumeMediaId) {
+	public void setResumeMediaId(long resumeMediaId) {
 		this.resumeMediaId = resumeMediaId;
 	}
 
@@ -96,5 +98,5 @@ public class CandidateResponse {
 	public void setTenant(String tenant) {
 		this.tenant = tenant;
 	}
- 
+
 }
