@@ -19,24 +19,24 @@ public class CandidateController {
 	@Autowired
 	private CandidateService candidateService;
 
-	@PostMapping("/addCandidate")
+	@PostMapping(path= "/api/v1/auth/candidate")
 	public CandidateResponse addCandidate(@RequestBody CandidateRequest request) {
 		return candidateService.addCandidate(request);
 
 	}
 
-	@GetMapping("/searchCandidate/{resumeMediaId}")
+	@GetMapping(path= "/api/v1/auth/candidate_search/{resumeMediaId}")
 	public CandidateResponse searchCandidate(@PathVariable Integer resumeMediaId) {
 		return candidateService.findByresumeMediaId(resumeMediaId);
 
 	}
 
-	@PostMapping("/updateCandidate")
+	@PostMapping(path= "/api/v1/auth/candidate_update")
 	public CandidateResponse updateCandidate(@RequestBody CandidateRequest request) {
 		return candidateService.updateCandidate(request);
 	}
 
-	@DeleteMapping("/deleteCandidate/{resumeMediaId}")
+	@DeleteMapping(path= "/api/v1/auth/candidate_delete/{resumeMediaId}")
 	@Transactional
 	public CandidateResponse deleteCandidate(@PathVariable long resumeMediaId) {
 		return candidateService.deleteByresumeMediaId(resumeMediaId);
