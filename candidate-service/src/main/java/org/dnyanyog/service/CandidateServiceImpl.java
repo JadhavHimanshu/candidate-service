@@ -51,7 +51,7 @@ public class CandidateServiceImpl implements CandidateService {
 			response.setResponseCode("911");
 		} else {
 			Candidate candidate = candidateData.get();
-			response.setMessage("User  Found ");
+			response.setMessage("Candidate  Found ");
 			response.setResponseCode("0000");
 			response.setFirstName(candidate.getFirstName());
 			response.setMiddleName(candidate.getMiddleName());
@@ -105,7 +105,7 @@ public class CandidateServiceImpl implements CandidateService {
 		if (candidateData.isPresent()) {
 
 			repo.deleteByresumeMediaId(resumeMediaId);
-			response.setMessage("User Deleted Sucessfully");
+			response.setMessage("Candidate Deleted Sucessfully");
 			response.setResponseCode("0000");
 
 		} else {
