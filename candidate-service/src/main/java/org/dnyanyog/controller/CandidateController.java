@@ -19,7 +19,7 @@ public class CandidateController {
 	@Autowired
 	private CandidateService candidateService;
 
-	@PostMapping(path= "/api/v1/auth/candidate")
+	@PostMapping(path= "/api/v1/auth/addcandidate")
 	public CandidateResponse addCandidate(@RequestBody CandidateRequest request) {
 		return candidateService.addCandidate(request);
 
