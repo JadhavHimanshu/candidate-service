@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 public class Candidate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "resume_id")
+	@Column(name = "resume_id", nullable = false, updatable = false, insertable = false)
 	private long resumeMediaId;
 	@Column(name = "firstname")
 	private String firstName;
