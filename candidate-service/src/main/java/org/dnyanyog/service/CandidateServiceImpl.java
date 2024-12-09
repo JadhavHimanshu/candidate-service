@@ -18,19 +18,13 @@ public class CandidateServiceImpl implements CandidateService {
 	@Override
 	public CandidateResponse addCandidate(CandidateRequest request) {
 		CandidateResponse response = new CandidateResponse();
-		Candidate data = new Candidate();
-		data.setFirstName(request.getFirstName());
-		data.setMiddleName(request.getMiddleName());
-		data.setLastName(request.getLastName());
-		data.setEmail(request.getEmail());
-		data.setVacancy(request.getVacancy());
-		data.setEmail(request.getEmail());
-		data.setMobile(request.getMobile());
-		data.setResumeMediaId(request.getResumeMediaId());
+		Candidate data = Candidate.getInstance().setFirstName(request.getFirstName())
+				.setMiddleName(request.getMiddleName()).setLastName(request.getLastName()).setEmail(request.getEmail())
+				.setVacancy(request.getVacancy()).setEmail(request.getEmail()).setMobile(request.getMobile())
+				.setResumeMediaId(request.getResumeMediaId());
 		data = repo.save(data);
 		response.setMessage("Candidate Added Sucessfully");
 		response.setResponseCode("0000");
-
 		response.setFirstName(data.getFirstName());
 		response.setLastName(data.getLastName());
 		response.setMiddleName(data.getMiddleName());
@@ -71,17 +65,12 @@ public class CandidateServiceImpl implements CandidateService {
 		CandidateResponse response = new CandidateResponse();
 		Optional<Candidate> candidateData = this.repo.findByresumeMediaId(request.getResumeMediaId());
 		if (candidateData.isPresent()) {
-			Candidate candidate = candidateData.get();
-			candidate.setFirstName(request.getFirstName());
-			candidate.setMiddleName(request.getMiddleName());
-			candidate.setLastName(request.getLastName());
-			candidate.setEmail(request.getEmail());
-			candidate.setMobile(request.getMobile());
-			candidate.setVacancy(request.getVacancy());
+			Candidate candidate = Candidate.getInstance().setFirstName(request.getFirstName())
+					.setMiddleName(request.getMiddleName()).setLastName(request.getLastName())
+					.setEmail(request.getEmail()).setMobile(request.getMobile()).setVacancy(request.getVacancy());
 			candidate = repo.save(candidate);
 			response.setMessage(" Candidate Updated ");
 			response.setResponseCode("0000");
-
 			response.setFirstName(candidate.getFirstName());
 			response.setMiddleName(candidate.getMiddleName());
 			response.setLastName(candidate.getLastName());
@@ -103,7 +92,6 @@ public class CandidateServiceImpl implements CandidateService {
 		CandidateResponse response = new CandidateResponse();
 		Optional<Candidate> candidateData = this.repo.deleteByresumeMediaId(resumeMediaId);
 		if (candidateData.isPresent()) {
-
 			repo.deleteByresumeMediaId(resumeMediaId);
 			response.setMessage("Candidate Deleted Sucessfully");
 			response.setResponseCode("0000");

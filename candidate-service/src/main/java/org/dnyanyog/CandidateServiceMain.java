@@ -7,7 +7,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CandidateServiceMain { 
 	public static void main(String args[]) {
 		SpringApplication.run(CandidateServiceMain.class, args);
-	}
-
-
+	} 
 }

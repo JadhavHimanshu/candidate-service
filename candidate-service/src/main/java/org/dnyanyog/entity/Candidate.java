@@ -28,62 +28,73 @@ public class Candidate {
 	@Column(name = "email")
 	private String email;
 	@Column(name = "mobile")
-	private int mobile;
+	private int mobile; 
+	   
+	 public static Candidate getInstance() {
+		  return new Candidate(); 
+	 }
 
 	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public Candidate setFirstName(String firstName) {
+		this.firstName = firstName;  
+		 return this ; 
 	}
 
 	public String getMiddleName() {
 		return middleName;
 	}
 
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
+	public Candidate setMiddleName(String middleName) {
+		this.middleName = middleName; 
+		 return this ; 
 	}
 
 	public String getLastName() {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public Candidate setLastName(String lastName) {
+		this.lastName = lastName; 
+		 return this ; 
 	}
 
 	public int getVacancy() {
 		return vacancy;
 	}
 
-	public void setVacancy(int vacancy) {
-		this.vacancy = vacancy;
+	public Candidate setVacancy(int vacancy) {
+		this.vacancy = vacancy; 
+		 return this ; 
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public Candidate setEmail(String email) {
+		this.email = email; 
+		 return this ; 
 	}
 
 	public int getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(int mobile) {
-		this.mobile = mobile;
+	public Candidate setMobile(int mobile) {
+		this.mobile = mobile; 
+		 return this ; 
 	}
 
 	public long getResumeMediaId() {
 		return resumeMediaId;
 	}
 
-	public void setResumeMediaId(int resumeMediaId) {
-		this.resumeMediaId = resumeMediaId;
+	public Candidate setResumeMediaId(int resumeMediaId) {
+		this.resumeMediaId = resumeMediaId;  
+		 return this ; 
 	}
 
 }
