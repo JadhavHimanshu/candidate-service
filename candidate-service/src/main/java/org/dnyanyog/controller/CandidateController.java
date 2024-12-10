@@ -20,7 +20,7 @@ public class CandidateController {
 	private CandidateService candidateService;
 
 	@PostMapping(path = "/api/v1/auth/addcandidate", consumes = { "application/json", "application/xml" }, produces = {
-			"application/json", "application/xml " })
+			"application/json", "application/xml" })
 	public CandidateResponse addCandidate(@RequestBody CandidateRequest request) {
 		return candidateService.addCandidate(request);
 

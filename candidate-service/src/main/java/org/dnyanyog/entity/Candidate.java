@@ -28,7 +28,9 @@ public class Candidate {
 	@Column(name = "email")
 	private String email;
 	@Column(name = "mobile")
-	private int mobile; 
+	private int mobile;  
+	 @Column(name = "password")  
+	private int password ; 
 	   
 	 public static Candidate getInstance() {
 		  return new Candidate(); 
@@ -95,6 +97,14 @@ public class Candidate {
 	public Candidate setResumeMediaId(int resumeMediaId) {
 		this.resumeMediaId = resumeMediaId;  
 		 return this ; 
+	}
+
+	public int getPassword() {
+		return password;
+	}
+
+	public void setPassword(int password) {
+		this.password = password;
 	}
 
 }

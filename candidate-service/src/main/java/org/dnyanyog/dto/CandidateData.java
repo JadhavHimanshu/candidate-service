@@ -74,11 +74,6 @@ public class CandidateData {
 		this.middleName = middleName;
 	}
 
-	@Override
-	public String toString() {
-		return "CandidateData [firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
-				+ ", vacancy=" + vacancy + ", email=" + email + ", mobile=" + mobile + ", resumeMediaId="
-				+ resumeMediaId + ", tenant=" + tenant + "]";
-	}
+	
 
 }
