@@ -43,6 +43,6 @@ public class CandidateController {
 	@Transactional
 	public CandidateResponse deleteCandidate(@PathVariable long resumeMediaId) {
 		return candidateService.deleteByresumeMediaId(resumeMediaId);
-	}
+	}  
 
 }
