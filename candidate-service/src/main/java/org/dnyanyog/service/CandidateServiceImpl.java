@@ -2,6 +2,7 @@ package org.dnyanyog.service;
 
 import java.util.Optional;
 
+import org.dnyanyog.common.ErrorCode;
 import org.dnyanyog.dto.CandidateRequest;
 import org.dnyanyog.dto.CandidateResponse;
 import org.dnyanyog.entity.Candidate;
@@ -23,8 +24,8 @@ public class CandidateServiceImpl implements CandidateService {
 				.setVacancy(request.getVacancy()).setEmail(request.getEmail()).setMobile(request.getMobile())
 				.setResumeMediaId(request.getResumeMediaId());
 		data = repo.save(data);
-		response.setMessage("Candidate Added Sucessfully");
-		response.setResponseCode("0000");
+		response.setMessage(ErrorCode.Add_Candidate.getMessage());
+		response.setResponseCode(ErrorCode.Add_Candidate.getCode());
 		response.setFirstName(data.getFirstName());
 		response.setLastName(data.getLastName());
 		response.setMiddleName(data.getMiddleName());
@@ -41,12 +42,12 @@ public class CandidateServiceImpl implements CandidateService {
 		CandidateResponse response = new CandidateResponse();
 		Optional<Candidate> candidateData = repo.findByresumeMediaId(resumeMediaId);
 		if (candidateData.isEmpty()) {
-			response.setMessage("Candidate Not found ");
-			response.setResponseCode("911");
+			response.setMessage(ErrorCode.Update_Candidate.getMessage());
+			response.setResponseCode(ErrorCode.Update_Candidate.getCode());
 		} else {
 			Candidate candidate = candidateData.get();
-			response.setMessage("Candidate  Found ");
-			response.setResponseCode("0000");
+			response.setMessage(ErrorCode.Candidate_Not_Found.getMessage());
+			response.setResponseCode(ErrorCode.Candidate_Not_Found.getCode());
 			response.setFirstName(candidate.getFirstName());
 			response.setMiddleName(candidate.getMiddleName());
 			response.setLastName(candidate.getLastName());
@@ -69,8 +70,8 @@ public class CandidateServiceImpl implements CandidateService {
 					.setMiddleName(request.getMiddleName()).setLastName(request.getLastName())
 					.setEmail(request.getEmail()).setMobile(request.getMobile()).setVacancy(request.getVacancy());
 			candidate = repo.save(candidate);
-			response.setMessage(" Candidate Updated ");
-			response.setResponseCode("0000");
+			response.setMessage(ErrorCode.Update_Candidate.getMessage());
+			response.setResponseCode(ErrorCode.Update_Candidate.getCode());
 			response.setFirstName(candidate.getFirstName());
 			response.setMiddleName(candidate.getMiddleName());
 			response.setLastName(candidate.getLastName());
@@ -80,8 +81,8 @@ public class CandidateServiceImpl implements CandidateService {
 			response.setResumeMediaId(candidate.getResumeMediaId());
 
 		} else {
-			response.setMessage(" User Not Found ");
-			response.setResponseCode("911");
+			response.setMessage(ErrorCode.Candidate_Not_Found.getMessage());
+			response.setResponseCode(ErrorCode.Candidate_Not_Found.getCode());
 		}
 
 		return response;
@@ -93,12 +94,12 @@ public class CandidateServiceImpl implements CandidateService {
 		Optional<Candidate> candidateData = this.repo.deleteByresumeMediaId(resumeMediaId);
 		if (candidateData.isPresent()) {
 			repo.deleteByresumeMediaId(resumeMediaId);
-			response.setMessage("Candidate Deleted Sucessfully");
-			response.setResponseCode("0000");
+			response.setMessage(ErrorCode.Delete_Candidate.getMessage());
+			response.setResponseCode(ErrorCode.Delete_Candidate.getCode());
 
 		} else {
-			response.setMessage(" Candidate Not Found ");
-			response.setResponseCode("911");
+			response.setMessage(ErrorCode.Candidate_Not_Found.getMessage());
+			response.setResponseCode(ErrorCode.Search_Candidate.getCode());
 		}
 
 		return response;

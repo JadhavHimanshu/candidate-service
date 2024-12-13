@@ -1,13 +1,22 @@
 package org.dnyanyog.dto;
 
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
 public class CandidateData {
 	public String firstName;
 	public String middleName;
 	public String lastName;
 	public int vacancy;
+	@NotBlank(message = "Email cannot be balnk")
+	@Email(message = "Invalid email format")
 	public String email;
+	@Digits(message = "Mbile number must be  valid 10 digit number", fraction = 0, integer = 10)
 	public int mobile;
-	public int resumeMediaId;
+	@Positive(message ="Resume Media Id must be a positive number")
+	public int resumeMediaId; 
 	public String tenant;
 
 	public String getTenant() {
@@ -73,7 +82,5 @@ public class CandidateData {
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
 	}
-
-	
 
 }
