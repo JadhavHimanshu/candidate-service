@@ -22,14 +22,14 @@ public class CandidateController {
 
 	@PostMapping(path = "/api/v1/auth/addcandidate", consumes = { "application/json", "application/xml" }, produces = {
 			"application/json", "application/xml" })
-	public CandidateResponse addCandidate(@Valid @RequestBody CandidateRequest request) {
+	public CandidateResponse addCandidate(@Valid @RequestBody CandidateRequest request) throws Throwable {
 		return candidateService.addCandidate(request);
 
 	}
 
 	@GetMapping(path = "/api/v1/auth/candidate_search/{resumeMediaId}")
 
-	public CandidateResponse searchCandidate( @Valid @PathVariable Integer resumeMediaId) {
+	public CandidateResponse searchCandidate(@Valid @PathVariable Integer resumeMediaId) {
 		return candidateService.findByresumeMediaId(resumeMediaId);
 
 	}
@@ -41,8 +41,8 @@ public class CandidateController {
 	}
 
 	@DeleteMapping(path = "/api/v1/auth/candidate_delete/{resumeMediaId}")
-	@Transactional
-	public CandidateResponse deleteCandidate( @Valid @PathVariable long resumeMediaId) {
+
+	public CandidateResponse deleteCandidate(@Valid @PathVariable long resumeMediaId) {
 		return candidateService.deleteByresumeMediaId(resumeMediaId);
 	}
 

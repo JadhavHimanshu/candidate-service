@@ -16,7 +16,7 @@ public class CandidateResponse {
 	public int vacancy;
 	public String email;
 	public int mobile;
-	public long resumeMediaId;
+	public int resumeMediaId;
 	public String tenant;
 
 	public String getMessage() {
@@ -83,12 +83,12 @@ public class CandidateResponse {
 		this.mobile = mobile;
 	}
 
-	public long getResumeMediaId() {
+	public int  getResumeMediaId() {
 		return resumeMediaId;
 	}
 
-	public void setResumeMediaId(long resumeMediaId) {
-		this.resumeMediaId = resumeMediaId;
+	public void setResumeMediaId(int i) {
+		this.resumeMediaId = i;
 	}
 
 	public String getTenant() {

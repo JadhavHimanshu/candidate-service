@@ -16,7 +16,7 @@ public class Candidate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "resume_id", nullable = false, updatable = false, insertable = false)
-	private long resumeMediaId;
+	private int resumeMediaId;
 	@Column(name = "firstname")
 	private String firstName;
 	@Column(name = "middlename")
@@ -90,12 +90,12 @@ public class Candidate {
 		 return this ; 
 	}
 
-	public long getResumeMediaId() {
+	public int getResumeMediaId() {
 		return resumeMediaId;
 	}
 
-	public Candidate setResumeMediaId(int resumeMediaId) {
-		this.resumeMediaId = resumeMediaId;  
+	public Candidate setResumeMediaId(int string) {
+		this.resumeMediaId = string;  
 		 return this ; 
 	}
 

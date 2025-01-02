@@ -21,7 +21,7 @@ public class CandidateData {
 	@NotNull(message = "Mobile number is mandatory")
 	public int mobile;
 	@Positive(message = "Resume Media Id must be a positive number")
-	public int resumeMediaId;
+	public Integer resumeMediaId;
 	@NotBlank(message = "Tenant is mandatory")
 	public String tenant;
 
@@ -73,11 +73,11 @@ public class CandidateData {
 		this.mobile = mobile;
 	}
 
-	public int getResumeMediaId() {
+	public Integer getResumeMediaId() {
 		return resumeMediaId;
 	}
 
-	public void setResumeMediaId(int resumeMediaId) {
+	public void setResumeMediaId(Integer resumeMediaId) {
 		this.resumeMediaId = resumeMediaId;
 	}
 

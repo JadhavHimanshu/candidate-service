@@ -20,7 +20,7 @@ public class CandidateServiceImpl implements CandidateService {
 	EncryptionUtil encryptionService;
 
 	@Override
-	public CandidateResponse addCandidate(CandidateRequest request) {
+	public CandidateResponse addCandidate(CandidateRequest request) throws Exception {
 		CandidateResponse response = new CandidateResponse();
 		Candidate data = Candidate.getInstance().setFirstName(request.getFirstName())
 				.setMiddleName(request.getMiddleName()).setLastName(request.getLastName()).setEmail(request.getEmail())
