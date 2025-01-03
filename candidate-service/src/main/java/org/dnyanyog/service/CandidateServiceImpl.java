@@ -45,12 +45,12 @@ public class CandidateServiceImpl implements CandidateService {
 		CandidateResponse response = new CandidateResponse();
 		Optional<Candidate> candidateData = repo.findByresumeMediaId(resumeMediaId);
 		if (candidateData.isEmpty()) {
-			response.setMessage(ResponseCode.Update_Candidate.getMessage());
-			response.setResponseCode(ResponseCode.Update_Candidate.getCode());
-		} else {
-			Candidate candidate = candidateData.get();
 			response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
 			response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
+		} else {
+			Candidate candidate = candidateData.get();
+			response.setMessage(ResponseCode.Search_Candidate.getMessage());
+			response.setResponseCode(ResponseCode.Search_Candidate.getCode());
 			response.setFirstName(candidate.getFirstName());
 			response.setMiddleName(candidate.getMiddleName());
 			response.setLastName(candidate.getLastName());
@@ -94,7 +94,7 @@ public class CandidateServiceImpl implements CandidateService {
 	@Override
 	public CandidateResponse deleteByresumeMediaId(long resumeMediaId) {
 		CandidateResponse response = new CandidateResponse();
-		Optional<Candidate> candidateData = this.repo.deleteByresumeMediaId(resumeMediaId);
+		Optional<Candidate> candidateData = this.repo.findByresumeMediaId(resumeMediaId);
 		if (candidateData.isPresent()) {
 			repo.deleteByresumeMediaId(resumeMediaId);
 			response.setMessage(ResponseCode.Delete_Candidate.getMessage());
@@ -102,7 +102,7 @@ public class CandidateServiceImpl implements CandidateService {
 
 		} else {
 			response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
-			response.setResponseCode(ResponseCode.Search_Candidate.getCode());
+			response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
 		}
 
 		return response;

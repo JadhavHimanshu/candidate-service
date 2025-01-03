@@ -30,7 +30,7 @@ public class Candidate {
 	@Column(name = "mobile")
 	private int mobile;  
 	 @Column(name = "password")  
-	private int password ; 
+	private Integer password ; 
 	   
 	 public static Candidate getInstance() {
 		  return new Candidate(); 
@@ -99,11 +99,11 @@ public class Candidate {
 		 return this ; 
 	}
 
-	public int getPassword() {
+	public Integer getPassword() {
 		return password;
 	}
 
-	public void setPassword(int password) {
+	public void setPassword(Integer password) {
 		this.password = password;
 	}
 

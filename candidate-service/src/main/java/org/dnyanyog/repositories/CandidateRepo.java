@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Component
 public interface CandidateRepo extends JpaRepository<Candidate, Integer> {
 
-	Optional<Candidate> findByresumeMediaId(Integer resumeMediaId);
+	Optional<Candidate> findByresumeMediaId(long resumeMediaId);
 	Optional<Candidate> deleteByresumeMediaId(long resumeMediaId);
 
 

@@ -41,7 +41,7 @@ public class CandidateController {
 	}
 
 	@DeleteMapping(path = "/api/v1/auth/candidate_delete/{resumeMediaId}")
-
+	@Transactional
 	public CandidateResponse deleteCandidate(@Valid @PathVariable long resumeMediaId) {
 		return candidateService.deleteByresumeMediaId(resumeMediaId);
 	}
