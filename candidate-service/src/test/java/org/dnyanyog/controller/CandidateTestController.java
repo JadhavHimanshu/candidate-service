@@ -1,92 +1,165 @@
 package org.dnyanyog.controller;
 
+import java.util.Optional;
 import org.dnyanyog.CandidateServiceMain;
+import org.dnyanyog.common.ResponseCode;
+import org.dnyanyog.dto.CandidateRequest;
+import org.dnyanyog.dto.CandidateResponse;
+import org.dnyanyog.entity.Candidate;
+import org.dnyanyog.repositories.CandidateRepo;
+import org.dnyanyog.service.CandidateServiceImpl;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.testng.Assert;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @ContextConfiguration(classes = CandidateServiceMain.class)
 public class CandidateTestController {
-	@Autowired
-	MockMvc mockMvc;
+  @Mock CandidateRepo repo;
+  @InjectMocks CandidateServiceImpl candidateService;
+  @Autowired MockMvc mockMvc;
 
-	@Test
-	public void AddCandidate() throws Exception {
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/v1/auth/addcandidate")
-				.content("{\n" + "  \"firstName\": \"himanshu\",\n" + "  \"middleName\": \"sharad\",\n"
-						+ "  \"lastName\": \"jadhav\",\n" + "  \"vacancy\": 123,\n"
-						+ "  \"email\": \"jadhavhimanshu1231@gmail.com\",\n" + "  \"mobile\": 9876543023,\n"
-						+ "  \"tenant\": \"AcmeCorp\",\n" + "  \"resumeMediaId\": 103\n" + "}")
-				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
+  @Test
+  public void AddCandidate() throws Exception {
+    CandidateRequest request = new CandidateRequest();
+    request.setFirstName("himanshu");
+    request.setMiddleName("sharad");
+    request.setLastName("jadhav");
+    request.setVacancy(3);
+    request.setMobile(899947474);
+    request.setResumeMediaId(23);
+    request.setTenant("xyz");
+    request.setEmail("jadhavhimanshu@1345gmail.com");
+    Candidate candidateEntity = new Candidate();
+    candidateEntity
+        .setResumeMediaId(2)
+        .setFirstName("himanshu")
+        .setLastName("jadhav")
+        .setMiddleName("sharad")
+        .setEmail("jadhavhimanshu1345@gmail.com")
+        .setMobile(899947474)
+        .setVacancy(3);
+    Mockito.when(repo.save(Mockito.any())).thenReturn(candidateEntity);
+    CandidateResponse response = candidateService.addCandidate(request);
+    Assert.assertEquals(ResponseCode.Add_Candidate.getCode(), response.getResponseCode());
+    Assert.assertEquals(ResponseCode.Add_Candidate.getMessage(), response.getMessage());
+    Assert.assertNotNull(response);
+  }
 
-		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.").exists())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Candidate Added Sucessfully"))
-				.andReturn();
-	}
+  @Test
+  public void updateCandidate() throws Exception {
+    CandidateRequest updateRequest = new CandidateRequest();
+    updateRequest.setFirstName("himanshu");
+    updateRequest.setMiddleName("sharad");
+    updateRequest.setLastName("jadhav");
+    updateRequest.setVacancy(5);
+    updateRequest.setMobile(899947475);
+    updateRequest.setResumeMediaId(23);
+    updateRequest.setTenant("xyz");
+    updateRequest.setEmail("jadhavhimanshu123@gmail.com");
+    Candidate candidateEntity = new Candidate();
+    candidateEntity
+        .setFirstName("himanshu")
+        .setMiddleName("sharad")
+        .setLastName("jadhav")
+        .setMobile(899947474)
+        .setVacancy(3)
+        .setEmail("jadhavhimanshu@1345gmail.com")
+        .setResumeMediaId(23);
+    Mockito.when(repo.save(Mockito.any())).thenReturn(candidateEntity);
+    CandidateResponse response = candidateService.updateCandidate(updateRequest);
 
-	@Test
-	public void updateCandidate() throws Exception {
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/v1/auth/candidate_update")
-				.content("\"firstName\": \"raghav\",\n" + "  \"middleName\":  \"anil\",\n"
-						+ "  \"lastName\": \"patil\",\n" + "  \"vacancy\": 123,\n"
-						+ "  \"email\": \"john.doe@example.com\",\n" + "  \"mobile\": 9876543045,\n"
-						+ "  \"tenant\": \"AcmeCorp\" ,\n" + "\"resumeMediaId\": 252} ")
-				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
+    Mockito.when(repo.findByresumeMediaId(23)).thenReturn(Optional.of(candidateEntity));
 
-		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.").exists())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Candidate Updated Sucessfully"))
-				.andReturn();
+    Mockito.when(repo.save(Mockito.any())).thenAnswer(invocation -> invocation.getArgument(0));
 
-	}
-	@Test
-	public void searchCandidateSucess() throws Exception {
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("api/v1/auth/candidate_search/").content("")
-				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
+    Assert.assertEquals(ResponseCode.Update_Candidate.getMessage(), response.getMessage());
+    Assert.assertEquals(ResponseCode.Update_Candidate.getCode(), response.getResponseCode());
+    Assert.assertNotNull(response);
 
-		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.").exists())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value("raghav"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.middleName").value("anil"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.lastName").value("patil"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.email").value("9876543043")) 
-				.andExpect(MockMvcResultMatchers.jsonPath("$.mobile").value("john.doe@example.com"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.tenant").value("AcmeCorp"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.resumeMediaId").value("223"))
+    // Validate that the repository save method was called with the updated
+    // candidate
+    //		Mockito.verify(repo).save(Mockito.argThat(updatedCandidate ->
+    // updatedCandidate.getResumeMediaId() == 23
+    //				&& updatedCandidate.getFirstName().equals("himanshu")
+    //				&& updatedCandidate.getMiddleName().equals("sharad") &&
+    // updatedCandidate.getLastName().equals("jadhav")
+    //				&& updatedCandidate.getEmail().equals("jadhavhimanshu123@gmail.com")
+    //				&& updatedCandidate.getMobile() == 899947475 && updatedCandidate.getVacancy() == 5));
+  }
 
+  @Test
+  public void updateCandidate_NotFound() throws Exception {
+    CandidateRequest updateRequest = new CandidateRequest();
+    updateRequest.setResumeMediaId(24); // Non-existent ID
+    updateRequest.setFirstName("himanshu");
+    updateRequest.setMiddleName("sharad");
+    updateRequest.setLastName("jadhav");
+    updateRequest.setVacancy(5);
+    updateRequest.setMobile(899947475);
+    updateRequest.setTenant("xyz");
+    updateRequest.setEmail("jadhavhimanshu123@gmail.com");
+    Mockito.when(repo.findByresumeMediaId(24)).thenReturn(Optional.empty());
+    CandidateResponse response = candidateService.updateCandidate(updateRequest);
+    Assert.assertNotNull(response, "Response should not be null");
+    Assert.assertEquals(ResponseCode.Candidate_Not_Found.getCode(), response.getResponseCode());
+    Assert.assertEquals(ResponseCode.Candidate_Not_Found.getMessage(), response.getMessage());
+    Mockito.verify(repo, Mockito.never()).save(Mockito.any());
+  }
 
-				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Candidate Found")).andReturn();
+  @Test
+  public void findByResumeMediaId_Success() throws Exception {
+    Candidate existingCandidate = new Candidate();
+    existingCandidate.setResumeMediaId(23);
+    existingCandidate.setFirstName("Himanshu");
+    existingCandidate.setMiddleName("Sharad");
+    existingCandidate.setLastName("Jadhav");
+    existingCandidate.setVacancy(5);
+    existingCandidate.setMobile(899947475);
+    existingCandidate.setEmail("jadhavhimanshu123@gmail.com");
+    Mockito.when(repo.findByresumeMediaId(23)).thenReturn(Optional.of(existingCandidate));
+    CandidateResponse response = candidateService.findByresumeMediaId(23);
+    Assert.assertEquals(ResponseCode.Search_Candidate.getCode(), response.getResponseCode());
+    Assert.assertEquals(ResponseCode.Search_Candidate.getMessage(), response.getMessage());
+    Mockito.verify(repo).findByresumeMediaId(23);
+  }
 
-	}
-	@Test
-	public void candidateNotFound() throws Exception {
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("api/v1/auth/candidate_search/")
-				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
+  @Test
+  public void findByResumeMediaId_NotFound() throws Exception {
+    Mockito.when(repo.findByresumeMediaId(23)).thenReturn(Optional.empty());
+    CandidateResponse response = candidateService.findByresumeMediaId(23);
+    Assert.assertEquals(ResponseCode.Candidate_Not_Found.getCode(), response.getResponseCode());
+    Assert.assertEquals(ResponseCode.Candidate_Not_Found.getMessage(), response.getMessage());
 
-		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.").exists())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Candidate Not Found")).andReturn();
+    Mockito.verify(repo).findByresumeMediaId(23);
+  }
 
-	}
-	@Test
-	public void deletebyId() throws Exception {
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/v1/auth/candidate_delete/")
-				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
+  @Test
+  public void deleteById_Success() throws Exception {
+    Candidate existingCandidate = new Candidate();
+    existingCandidate.setResumeMediaId(23);
+    existingCandidate.setFirstName("Himanshu");
+    existingCandidate.setMiddleName("Sharad");
+    existingCandidate.setLastName("Jadhav");
+    existingCandidate.setVacancy(5);
+    existingCandidate.setMobile(899947475);
+    existingCandidate.setEmail("jadhavhimanshu123@gmail.com");
+    Mockito.when(repo.findByresumeMediaId(23)).thenReturn(Optional.of(existingCandidate));
+    Mockito.when(repo.deleteByresumeMediaId(23)).thenReturn(1);
 
-		mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.").exists())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Candidate Deleted Sucessfully"))
-				.andReturn();
-	}
+    CandidateResponse response = candidateService.deleteByresumeMediaId(23);
+    Assert.assertEquals(ResponseCode.Delete_Candidate.getCode(), response.getResponseCode());
+    Assert.assertEquals(ResponseCode.Delete_Candidate.getMessage(), response.getMessage());
+    Mockito.verify(repo).findByresumeMediaId(23);
 
+    Mockito.verify(repo).deleteByresumeMediaId(23);
+  }
 }

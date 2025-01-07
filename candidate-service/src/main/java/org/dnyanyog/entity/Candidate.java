@@ -1,110 +1,115 @@
 package org.dnyanyog.entity;
 
-import org.springframework.stereotype.Component;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "Candidate_Management")
 @Component
 public class Candidate {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "resume_id", nullable = false, updatable = false, insertable = false)
-	private int resumeMediaId;
-	@Column(name = "firstname")
-	private String firstName;
-	@Column(name = "middlename")
-	private String middleName;
-	@Column(name = "lastname")
-	private String lastName;
-	@Column(name = "vacancy")
-	private int vacancy;
-	@Column(name = "email")
-	private String email;
-	@Column(name = "mobile")
-	private int mobile;  
-	 @Column(name = "password")  
-	private Integer password ; 
-	   
-	 public static Candidate getInstance() {
-		  return new Candidate(); 
-	 }
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "resume_id", nullable = false, updatable = false, insertable = false)
+  private int resumeMediaId;
 
-	public String getFirstName() {
-		return firstName;
-	}
+  @Column(name = "firstname")
+  private String firstName;
 
-	public Candidate setFirstName(String firstName) {
-		this.firstName = firstName;  
-		 return this ; 
-	}
+  @Column(name = "middlename")
+  private String middleName;
 
-	public String getMiddleName() {
-		return middleName;
-	}
+  @Column(name = "lastname")
+  private String lastName;
 
-	public Candidate setMiddleName(String middleName) {
-		this.middleName = middleName; 
-		 return this ; 
-	}
+  @Column(name = "vacancy")
+  private int vacancy;
 
-	public String getLastName() {
-		return lastName;
-	}
+  @Column(name = "email")
+  private String email;
 
-	public Candidate setLastName(String lastName) {
-		this.lastName = lastName; 
-		 return this ; 
-	}
+  @Column(name = "mobile")
+  private int mobile;
 
-	public int getVacancy() {
-		return vacancy;
-	}
+  @Column(name = "password")
+  private Integer password;
 
-	public Candidate setVacancy(int vacancy) {
-		this.vacancy = vacancy; 
-		 return this ; 
-	}
+  public static Candidate getInstance() {
+    return new Candidate();
+  }
 
-	public String getEmail() {
-		return email;
-	}
+  public String getFirstName() {
+    return firstName;
+  }
 
-	public Candidate setEmail(String email) {
-		this.email = email; 
-		 return this ; 
-	}
+  public Candidate setFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
 
-	public int getMobile() {
-		return mobile;
-	}
+  public String getMiddleName() {
+    return middleName;
+  }
 
-	public Candidate setMobile(int mobile) {
-		this.mobile = mobile; 
-		 return this ; 
-	}
+  public Candidate setMiddleName(String middleName) {
+    this.middleName = middleName;
+    return this;
+  }
 
-	public int getResumeMediaId() {
-		return resumeMediaId;
-	}
+  public String getLastName() {
+    return lastName;
+  }
 
-	public Candidate setResumeMediaId(int string) {
-		this.resumeMediaId = string;  
-		 return this ; 
-	}
+  public Candidate setLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
 
-	public Integer getPassword() {
-		return password;
-	}
+  public int getVacancy() {
+    return vacancy;
+  }
 
-	public void setPassword(Integer password) {
-		this.password = password;
-	}
+  public Candidate setVacancy(int vacancy) {
+    this.vacancy = vacancy;
+    return this;
+  }
 
+  public String getEmail() {
+    return email;
+  }
+
+  public Candidate setEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public int getMobile() {
+    return mobile;
+  }
+
+  public Candidate setMobile(int mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public int getResumeMediaId() {
+    return resumeMediaId;
+  }
+
+  public Candidate setResumeMediaId(int string) {
+    this.resumeMediaId = string;
+    return this;
+  }
+
+  public Integer getPassword() {
+    return password;
+  }
+
+  public void setPassword(Integer password) {
+    this.password = password;
+  }
 }
