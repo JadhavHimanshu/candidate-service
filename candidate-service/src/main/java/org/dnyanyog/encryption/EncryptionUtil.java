@@ -20,15 +20,11 @@ public class EncryptionUtil {
   private static Cipher cipher;
 
   static {
-    // Base64 decode the secret key string and check length
     byte[] decodedKey = Base64.getDecoder().decode(Secret_Key);
 
-    // Ensure key is 32 bytes (256 bits)
     if (decodedKey.length != 32) {
       throw new IllegalArgumentException("Invalid AES key length. Expected 32 bytes.");
     }
-
-    // Create the AES key
     secretKey = new SecretKeySpec(decodedKey, Algorithm);
     try {
       cipher = Cipher.getInstance(Algorithm);
@@ -38,40 +34,17 @@ public class EncryptionUtil {
     }
   }
 
-  //	static {
-  //		secretKey = new SecretKeySpec(Secret_Key.getBytes(StandardCharsets.UTF_8), Algorithm);
-  //		try {
-  //			cipher = Cipher.getInstance(Algorithm);
-  //			cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-  //		} catch (InvalidKeyException e) {
-  //			e.printStackTrace();
-  //		} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
-  //			e.printStackTrace();
-  //		}
 
   public static int encrypt(Integer integer) throws Exception {
-    // Convert integer to a byte array
     byte[] inputBytes = integer.toString().getBytes(StandardCharsets.UTF_8);
 
-    // Encrypt the byte array
     byte[] encryptedData = cipher.doFinal(inputBytes);
 
-    // Convert encrypted byte array to BigInteger, then return as int
-    BigInteger bigInt = new BigInteger(1, encryptedData); // Convert to positive BigInteger
-    return bigInt.intValue(); // Convert BigInteger to int
+    BigInteger bigInt = new BigInteger(1, encryptedData); 
+    return bigInt.intValue(); 
   }
 
-  //	public static int encrypt(Integer integer) throws Exception {
-  //	    byte[] encryptedData = cipher.doFinal(integer.getBytes(StandardCharsets.UTF_8));
-  //	    BigInteger bigInt = new BigInteger(1, encryptedData); // Convert to positive BigInteger
-  //	    return bigInt.intValue(); // Convert BigInteger to int
-  //	}
-
-  //	public static String encrypt(String data) throws Exception {
-  //		byte[] encryptedData = cipher.doFinal(data.getBytes());
-  //		return Base64.getEncoder().encodeToString(encryptedData);
-
-  // }
+  
 
   public static String decrypt(String encryptedData) throws Exception {
     byte[] decryptedData = cipher.doFinal(Base64.getDecoder().decode(encryptedData));

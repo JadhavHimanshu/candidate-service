@@ -85,15 +85,7 @@ public class CandidateTestController {
     Assert.assertEquals(ResponseCode.Update_Candidate.getCode(), response.getResponseCode());
     Assert.assertNotNull(response);
 
-    // Validate that the repository save method was called with the updated
-    // candidate
-    //		Mockito.verify(repo).save(Mockito.argThat(updatedCandidate ->
-    // updatedCandidate.getResumeMediaId() == 23
-    //				&& updatedCandidate.getFirstName().equals("himanshu")
-    //				&& updatedCandidate.getMiddleName().equals("sharad") &&
-    // updatedCandidate.getLastName().equals("jadhav")
-    //				&& updatedCandidate.getEmail().equals("jadhavhimanshu123@gmail.com")
-    //				&& updatedCandidate.getMobile() == 899947475 && updatedCandidate.getVacancy() == 5));
+ 
   }
 
   @Test
