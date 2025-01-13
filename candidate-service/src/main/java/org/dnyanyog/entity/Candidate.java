@@ -13,8 +13,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class Candidate {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "resume_id", nullable = false, updatable = false, insertable = false)
+  @Column(name = "can_code", nullable = false, updatable = false, insertable = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long candidatecode;
+
+  @Column(name = "can_id")
+  private String candidateId;
+
+  @Column(name = "resumeMediaID")
   private int resumeMediaId;
 
   @Column(name = "firstname")
@@ -111,5 +117,21 @@ public class Candidate {
 
   public void setPassword(Integer password) {
     this.password = password;
+  }
+
+  public Long getCandidatecode() {
+    return candidatecode;
+  }
+
+  public void setCandidatecode(Long candidatecode) {
+    this.candidatecode = candidatecode;
+  }
+
+  public String getCandidateId() {
+    return candidateId;
+  }
+
+  public void setCandidateId(String candidateId) {
+    this.candidateId = candidateId;
   }
 }

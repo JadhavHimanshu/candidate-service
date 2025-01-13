@@ -12,5 +12,5 @@ public interface CandidateRepo extends JpaRepository<Candidate, Integer> {
 
   Optional<Candidate> findByresumeMediaId(long resumeMediaId);
 
-  int deleteByresumeMediaId(long resumeMediaId);
+  Integer deleteByresumeMediaId(long resumeMediaId);
 }

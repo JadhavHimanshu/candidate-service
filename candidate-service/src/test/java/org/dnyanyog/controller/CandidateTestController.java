@@ -84,8 +84,6 @@ public class CandidateTestController {
     Assert.assertEquals(ResponseCode.Update_Candidate.getMessage(), response.getMessage());
     Assert.assertEquals(ResponseCode.Update_Candidate.getCode(), response.getResponseCode());
     Assert.assertNotNull(response);
-
- 
   }
 
   @Test

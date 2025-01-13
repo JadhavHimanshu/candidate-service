@@ -34,17 +34,12 @@ public class EncryptionUtil {
     }
   }
 
-
-  public static int encrypt(Integer integer) throws Exception {
+  public static String encrypt(Integer integer) throws Exception {
     byte[] inputBytes = integer.toString().getBytes(StandardCharsets.UTF_8);
-
     byte[] encryptedData = cipher.doFinal(inputBytes);
-
-    BigInteger bigInt = new BigInteger(1, encryptedData); 
-    return bigInt.intValue(); 
+    BigInteger bigInt = new BigInteger(1, encryptedData);
+    return Base64.getEncoder().encodeToString(encryptedData);
   }
-
-  
 
   public static String decrypt(String encryptedData) throws Exception {
     byte[] decryptedData = cipher.doFinal(Base64.getDecoder().decode(encryptedData));

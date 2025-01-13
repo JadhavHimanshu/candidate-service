@@ -7,30 +7,36 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 public class CandidateData {
+
+  private Long candidatecode;
+
+  @NotBlank(message = "Candidate ID is Mandatory")
+  private String candidateId;
+
   @NotBlank(message = "Firstname is mandatory")
-  public String firstName;
+  private String firstName;
 
   @NotBlank(message = "Middlename is mandatory")
-  public String middleName;
+  private String middleName;
 
   @NotBlank(message = "Lastname is mandatory")
-  public String lastName;
+  private String lastName;
 
-  public int vacancy;
+  private Integer vacancy;
 
   @NotBlank(message = "Email cannot be balnk")
   @Email(message = "Invalid email format")
-  public String email;
+  private String email;
 
   @Digits(message = "Mbile number must be  valid 10 digit number", fraction = 0, integer = 10)
   @NotNull(message = "Mobile number is mandatory")
-  public int mobile;
+  private Integer mobile;
 
   @Positive(message = "Resume Media Id must be a positive number")
-  public Integer resumeMediaId;
+  private Integer resumeMediaId;
 
   @NotBlank(message = "Tenant is mandatory")
-  public String tenant;
+  private String tenant;
 
   public String getTenant() {
     return tenant;
@@ -56,11 +62,11 @@ public class CandidateData {
     this.lastName = lastName;
   }
 
-  public int getVacancy() {
+  public Integer getVacancy() {
     return vacancy;
   }
 
-  public void setVacancy(int vacancy) {
+  public void setVacancy(Integer vacancy) {
     this.vacancy = vacancy;
   }
 
@@ -72,11 +78,11 @@ public class CandidateData {
     this.email = email;
   }
 
-  public int getMobile() {
+  public Integer getMobile() {
     return mobile;
   }
 
-  public void setMobile(int mobile) {
+  public void setMobile(Integer mobile) {
     this.mobile = mobile;
   }
 
@@ -94,5 +100,13 @@ public class CandidateData {
 
   public void setMiddleName(String middleName) {
     this.middleName = middleName;
+  }
+
+  public Long getCandidatecode() {
+    return candidatecode;
+  }
+
+  public void setCandidatecode(Long candidatecode) {
+    this.candidatecode = candidatecode;
   }
 }

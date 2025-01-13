@@ -7,16 +7,18 @@ import org.springframework.stereotype.Component;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CandidateResponse {
 
-  public String message;
-  public String responseCode;
-  public String firstName;
-  public String middleName;
-  public String lastName;
-  public int vacancy;
-  public String email;
-  public int mobile;
-  public int resumeMediaId;
-  public String tenant;
+  private String message;
+  private String responseCode;
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private Integer vacancy;
+  private String email;
+  private Integer mobile;
+  private Integer resumeMediaId;
+  private String tenant;
+  private Long candidatecode;
+  private String candidateId;
 
   public String getMessage() {
     return message;
@@ -58,11 +60,11 @@ public class CandidateResponse {
     this.lastName = lastName;
   }
 
-  public int getVacancy() {
+  public Integer getVacancy() {
     return vacancy;
   }
 
-  public void setVacancy(int vacancy) {
+  public void setVacancy(Integer vacancy) {
     this.vacancy = vacancy;
   }
 
@@ -74,19 +76,19 @@ public class CandidateResponse {
     this.email = email;
   }
 
-  public int getMobile() {
+  public Integer getMobile() {
     return mobile;
   }
 
-  public void setMobile(int mobile) {
+  public void setMobile(Integer mobile) {
     this.mobile = mobile;
   }
 
-  public int getResumeMediaId() {
+  public Integer getResumeMediaId() {
     return resumeMediaId;
   }
 
-  public void setResumeMediaId(int i) {
+  public void setResumeMediaId(Integer i) {
     this.resumeMediaId = i;
   }
 
@@ -96,5 +98,21 @@ public class CandidateResponse {
 
   public void setTenant(String tenant) {
     this.tenant = tenant;
+  }
+
+  public Long getCandidatecode() {
+    return candidatecode;
+  }
+
+  public void setCandidatecode(Long candidatecode) {
+    this.candidatecode = candidatecode;
+  }
+
+  public String getCandidateId() {
+    return candidateId;
+  }
+
+  public void setCandidateId(String candidateId) {
+    this.candidateId = candidateId;
   }
 }
