@@ -1,5 +1,6 @@
 package org.dnyanyog.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,17 +12,18 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "Candidate_Management")
 @Component
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Candidate {
   @Id
   @Column(name = "can_code", nullable = false, updatable = false, insertable = false)
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long candidatecode;
 
   @Column(name = "can_id")
   private String candidateId;
 
   @Column(name = "resumeMediaID")
-  private int resumeMediaId;
+  private Integer resumeMediaId;
 
   @Column(name = "firstname")
   private String firstName;
@@ -39,7 +41,7 @@ public class Candidate {
   private String email;
 
   @Column(name = "mobile")
-  private int mobile;
+  private Integer mobile;
 
   @Column(name = "password")
   private Integer password;
@@ -102,11 +104,11 @@ public class Candidate {
     return this;
   }
 
-  public int getResumeMediaId() {
+  public Integer getResumeMediaId() {
     return resumeMediaId;
   }
 
-  public Candidate setResumeMediaId(int string) {
+  public Candidate setResumeMediaId(Integer string) {
     this.resumeMediaId = string;
     return this;
   }

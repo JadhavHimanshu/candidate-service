@@ -1,4 +1,4 @@
-package org.dnyanyog.controller;
+package org.dnyanyog.service;
 
 import java.util.Optional;
 import org.dnyanyog.CandidateServiceMain;
@@ -7,7 +7,6 @@ import org.dnyanyog.dto.CandidateRequest;
 import org.dnyanyog.dto.CandidateResponse;
 import org.dnyanyog.entity.Candidate;
 import org.dnyanyog.repositories.CandidateRepo;
-import org.dnyanyog.service.CandidateServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -22,7 +21,7 @@ import org.testng.Assert;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ContextConfiguration(classes = CandidateServiceMain.class)
-public class CandidateTestController {
+public class CandidateServiceTest {
   @Mock CandidateRepo repo;
   @InjectMocks CandidateServiceImpl candidateService;
   @Autowired MockMvc mockMvc;

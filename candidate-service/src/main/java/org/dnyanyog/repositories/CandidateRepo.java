@@ -13,4 +13,6 @@ public interface CandidateRepo extends JpaRepository<Candidate, Integer> {
   Optional<Candidate> findByresumeMediaId(long resumeMediaId);
 
   Integer deleteByresumeMediaId(long resumeMediaId);
+
+  Optional<Candidate> findBymobile(Integer mobile);
 }

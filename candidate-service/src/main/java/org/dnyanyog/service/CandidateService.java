@@ -14,4 +14,8 @@ public interface CandidateService {
   public CandidateResponse deleteByresumeMediaId(long resumeMediaId);
 
   public List<CandidateResponse> getAllCandidates(CandidateRequest requet);
+
+  // public CandidateResponse findBymobile(CandidateRequest request);
+
+  public CandidateResponse findBymobile(Integer mobile);
 }

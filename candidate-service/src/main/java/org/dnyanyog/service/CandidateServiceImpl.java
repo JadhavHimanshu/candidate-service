@@ -109,4 +109,20 @@ public class CandidateServiceImpl implements CandidateService {
             .collect(Collectors.toList());
     return response;
   }
+
+  @Override
+  public CandidateResponse findBymobile(Integer mobile) {
+    Optional<Candidate> candidateData = repo.findBymobile(mobile);
+    if (candidateData.isPresent()) {
+      return CandidateMapper.toDto(
+          candidateData.get(),
+          ResponseCode.Search_Candidate.getMessage(),
+          ResponseCode.Search_Candidate.getCode());
+    } else {
+      CandidateResponse response = new CandidateResponse();
+      response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
+      response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
+      return response;
+    }
+  }
 }

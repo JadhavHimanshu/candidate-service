@@ -42,6 +42,13 @@ public class CandidateController {
     return ResponseEntity.ok(response);
   }
 
+  @GetMapping(path = "/candidate_search_bymobile/{mobile}")
+  public ResponseEntity<CandidateResponse> searchCandidatebymobile(
+      @Valid @PathVariable Integer mobile) {
+    CandidateResponse response = candidateService.findBymobile(mobile);
+    return ResponseEntity.ok(response);
+  }
+
   @GetMapping(
       path = "/candidates",
       produces = {"application/json", "application/xml"})
