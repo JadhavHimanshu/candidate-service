@@ -14,9 +14,7 @@ public class CandidateMapper {
         .setMobile(request.getMobile())
         .setResumeMediaId(request.getResumeMediaId())
         .setVacancy(request.getVacancy());
-    // .setCandidatecode(request.getCandidatecode());
-    // .setCandidateId(request.getCa);;
-
+    
   }
 
   public static CandidateResponse toDto(Candidate candidate, String message, String code) {

@@ -47,7 +47,7 @@ public class CandidateServiceTest {
         .setMobile(899947474)
         .setVacancy(3);
     Mockito.when(repo.save(Mockito.any())).thenReturn(candidateEntity);
-    CandidateResponse response = candidateService.addCandidate(request);
+    CandidateResponse response = candidateService.addOrUpdateCandidate(request);
     Assert.assertEquals(ResponseCode.Add_Candidate.getCode(), response.getResponseCode());
     Assert.assertEquals(ResponseCode.Add_Candidate.getMessage(), response.getMessage());
     Assert.assertNotNull(response);
@@ -72,9 +72,10 @@ public class CandidateServiceTest {
         .setMobile(899947474)
         .setVacancy(3)
         .setEmail("jadhavhimanshu@1345gmail.com")
-        .setResumeMediaId(23);
+        .setResumeMediaId(23); 
+     Mockito.when(repo.findByresumeMediaId(23)).thenReturn(Optional.of(candidateEntity));
     Mockito.when(repo.save(Mockito.any())).thenReturn(candidateEntity);
-    CandidateResponse response = candidateService.updateCandidate(updateRequest);
+    CandidateResponse response = candidateService.addOrUpdateCandidate(updateRequest);
 
     Mockito.when(repo.findByresumeMediaId(23)).thenReturn(Optional.of(candidateEntity));
 
@@ -97,7 +98,7 @@ public class CandidateServiceTest {
     updateRequest.setTenant("xyz");
     updateRequest.setEmail("jadhavhimanshu123@gmail.com");
     Mockito.when(repo.findByresumeMediaId(24)).thenReturn(Optional.empty());
-    CandidateResponse response = candidateService.updateCandidate(updateRequest);
+    CandidateResponse response = candidateService.addOrUpdateCandidate(updateRequest);
     Assert.assertNotNull(response, "Response should not be null");
     Assert.assertEquals(ResponseCode.Candidate_Not_Found.getCode(), response.getResponseCode());
     Assert.assertEquals(ResponseCode.Candidate_Not_Found.getMessage(), response.getMessage());

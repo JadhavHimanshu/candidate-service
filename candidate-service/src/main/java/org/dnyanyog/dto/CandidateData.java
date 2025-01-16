@@ -10,7 +10,7 @@ public class CandidateData {
 
   private Long candidatecode;
 
-  @NotBlank(message = "Candidate ID is Mandatory")
+  //@NotBlank //(message = "Candidate ID is Mandatory")
   private String candidateId;
 
   @NotBlank(message = "Firstname is mandatory")
@@ -28,11 +28,11 @@ public class CandidateData {
   @Email(message = "Invalid email format")
   private String email;
 
-  @Digits(message = "Mbile number must be  valid 10 digit number", fraction = 0, integer = 10)
+  @Digits(message = "Mobile number must be  valid 10 digit number", fraction = 0, integer = 10)
   @NotNull(message = "Mobile number is mandatory")
   private Integer mobile;
 
-  @Positive(message = "Resume Media Id must be a positive number")
+  @NotNull(message = "Resume Media Id must be a positive number") //@postive
   private Integer resumeMediaId;
 
   @NotBlank(message = "Tenant is mandatory")
@@ -109,4 +109,12 @@ public class CandidateData {
   public void setCandidatecode(Long candidatecode) {
     this.candidatecode = candidatecode;
   }
+
+public String getCandidateId() {
+	return candidateId;
+}
+
+public void setCandidateId(String candidateId) {
+	this.candidateId = candidateId;
+}
 }

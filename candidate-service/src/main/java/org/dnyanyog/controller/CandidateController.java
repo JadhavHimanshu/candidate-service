@@ -29,10 +29,12 @@ public class CandidateController {
   public CandidateResponse addOrUpdateCandidate(@Valid @RequestBody CandidateRequest request)
       throws Throwable {
     if (request.getResumeMediaId() == null || request.getResumeMediaId() <= 0) {
-      return candidateService.addCandidate(request);
-    } else {
-      return candidateService.updateCandidate(request);
-    }
+      return candidateService.addOrUpdateCandidate(request);  
+     
+ } else {
+	 return candidateService.addOrUpdateCandidate(request);
+   } 
+    
   }
 
   @GetMapping(path = "/candidate_search/{resumeMediaId}")

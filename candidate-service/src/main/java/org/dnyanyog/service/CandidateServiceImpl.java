@@ -29,17 +29,17 @@ public class CandidateServiceImpl implements CandidateService {
     return Id.toString();
   }
 
-  @Override
-  public CandidateResponse addCandidate(CandidateRequest request) throws Exception {
-    String Id = generatedcandidateId();
-    String encryptedResumeId = encryptionService.encrypt(request.getResumeMediaId());
-    Candidate candidate = CandidateMapper.toEntity(request, encryptedResumeId);
-    Candidate saveCandidate = repo.save(candidate);
-    return CandidateMapper.toDto(
-        saveCandidate,
-        ResponseCode.Add_Candidate.getMessage(),
-        ResponseCode.Add_Candidate.getCode());
-  }
+//  @Override
+//  public CandidateResponse addCandidate(CandidateRequest request) throws Exception {
+//    String Id = generatedcandidateId();
+//    String encryptedResumeId = encryptionService.encrypt(request.getResumeMediaId());
+//    Candidate candidate = CandidateMapper.toEntity(request, encryptedResumeId);
+//    Candidate saveCandidate = repo.save(candidate);
+//    return CandidateMapper.toDto(
+//        saveCandidate,
+//        ResponseCode.Add_Candidate.getMessage(),
+//        ResponseCode.Add_Candidate.getCode());
+//  }
 
   @Override
   public CandidateResponse findByresumeMediaId(Integer resumeMediaId) {
@@ -58,22 +58,32 @@ public class CandidateServiceImpl implements CandidateService {
   }
 
   @Override
-  public CandidateResponse updateCandidate(CandidateRequest request) throws Exception {
+  public CandidateResponse addOrUpdateCandidate(CandidateRequest request) throws Exception {
     CandidateResponse response = new CandidateResponse();
     Optional<Candidate> candidateData = this.repo.findByresumeMediaId(request.getResumeMediaId());
     if (candidateData.isPresent()) {
       String encryptedResumeMediaId = encryptionService.encrypt(request.getResumeMediaId());
       Candidate updateCandidate = CandidateMapper.toEntity(request, encryptedResumeMediaId);
       Candidate saveCandidate = repo.save(updateCandidate);
-      return CandidateMapper.toDto(
+      response =  CandidateMapper.toDto(
           saveCandidate,
           ResponseCode.Update_Candidate.getMessage(),
           ResponseCode.Update_Candidate.getCode());
-    } else {
-      response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
-      response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
-      return response;
-    }
+    } else { 
+    	String candidateId = generatedcandidateId();
+        String encryptedResumeId = encryptionService.encrypt(request.getResumeMediaId());
+        Candidate newCandidate = CandidateMapper.toEntity(request, encryptedResumeId);
+        newCandidate.setCandidateId(candidateId); // Assign generated candidate ID
+        Candidate savedCandidate = repo.save(newCandidate);
+        response = CandidateMapper.toDto(
+            savedCandidate,
+            ResponseCode.Add_Candidate.getMessage(),
+            ResponseCode.Add_Candidate.getCode()
+        ); 
+     
+    } 
+    return response;
+
   }
 
   @Override
@@ -125,4 +135,16 @@ public class CandidateServiceImpl implements CandidateService {
       return response;
     }
   }
+
+//@Override
+//public CandidateResponse addCandidate(CandidateRequest request) throws Throwable {
+//	// TODO Auto-generated method stub
+//	return null;
+//}
+//
+//@Override
+//public CandidateResponse updateCandidate(CandidateRequest request) throws Exception {
+//	// TODO Auto-generated method stub
+//	return null;
+//}
 }

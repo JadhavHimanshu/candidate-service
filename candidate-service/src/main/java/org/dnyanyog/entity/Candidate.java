@@ -22,7 +22,7 @@ public class Candidate {
   @Column(name = "can_id")
   private String candidateId;
 
-  @Column(name = "resumeMediaID")
+  @Column(name = "resumeMediaID" , nullable = true)
   private Integer resumeMediaId;
 
   @Column(name = "firstname")
