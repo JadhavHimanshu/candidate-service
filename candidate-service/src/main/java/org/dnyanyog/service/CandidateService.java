@@ -9,7 +9,7 @@ public interface CandidateService {
 
   public CandidateResponse findByresumeMediaId(Integer resumeMediaId);
 
-  public CandidateResponse updateCandidate(CandidateRequest request) throws Exception;
+ // public CandidateResponse updateCandidate(CandidateRequest request) throws Exception;
 
   public CandidateResponse deleteByresumeMediaId(long resumeMediaId);
 

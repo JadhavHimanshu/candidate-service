@@ -136,15 +136,5 @@ public class CandidateServiceImpl implements CandidateService {
     }
   }
 
-//@Override
-//public CandidateResponse addCandidate(CandidateRequest request) throws Throwable {
-//	// TODO Auto-generated method stub
-//	return null;
-//}
-//
-//@Override
-//public CandidateResponse updateCandidate(CandidateRequest request) throws Exception {
-//	// TODO Auto-generated method stub
-//	return null;
-//}
+
 }
