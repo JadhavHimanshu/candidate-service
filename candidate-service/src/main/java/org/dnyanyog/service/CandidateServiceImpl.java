@@ -29,18 +29,6 @@ public class CandidateServiceImpl implements CandidateService {
     return Id.toString();
   }
 
-//  @Override
-//  public CandidateResponse addCandidate(CandidateRequest request) throws Exception {
-//    String Id = generatedcandidateId();
-//    String encryptedResumeId = encryptionService.encrypt(request.getResumeMediaId());
-//    Candidate candidate = CandidateMapper.toEntity(request, encryptedResumeId);
-//    Candidate saveCandidate = repo.save(candidate);
-//    return CandidateMapper.toDto(
-//        saveCandidate,
-//        ResponseCode.Add_Candidate.getMessage(),
-//        ResponseCode.Add_Candidate.getCode());
-//  }
-
   @Override
   public CandidateResponse findByresumeMediaId(Integer resumeMediaId) {
     Optional<Candidate> candidateData = repo.findByresumeMediaId(resumeMediaId);
