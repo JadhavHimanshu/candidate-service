@@ -10,7 +10,7 @@ public class CandidateData {
 
   private Long candidatecode;
 
-  //@NotBlank //(message = "Candidate ID is Mandatory")
+  @NotBlank (message = "Candidate ID is Mandatory")
   private String candidateId;
 
   @NotBlank(message = "Firstname is mandatory")
