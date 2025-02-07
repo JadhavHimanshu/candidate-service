@@ -32,7 +32,7 @@ public class CandidateData {
   @NotNull(message = "Mobile number is mandatory")
   private Integer mobile;
 
-  @NotNull(message = "Resume Media Id must be a positive number") //@postive
+  @NotNull(message = "Resume Media Id must be a positive number") 
   private Integer resumeMediaId;
 
   @NotBlank(message = "Tenant is mandatory")
