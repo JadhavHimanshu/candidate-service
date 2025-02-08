@@ -35,12 +35,12 @@ public class CandidateServiceImpl implements CandidateService {
     if (candidateData.isPresent()) {
       return CandidateMapper.toDto(
           candidateData.get(),
-          ResponseCode.Search_Candidate.getMessage(),
-          ResponseCode.Search_Candidate.getCode());
+          ResponseCode.Search_Candidate.getCode(),
+         ResponseCode.Search_Candidate.getMessage());
     } else {
       CandidateResponse response = new CandidateResponse();
-      response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
       response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
+      response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
       return response;
     }
   }
@@ -55,8 +55,8 @@ public class CandidateServiceImpl implements CandidateService {
       Candidate saveCandidate = repo.save(updateCandidate);
       response =  CandidateMapper.toDto(
           saveCandidate,
-          ResponseCode.Update_Candidate.getMessage(),
-          ResponseCode.Update_Candidate.getCode());
+          ResponseCode.Update_Candidate.getCode(),
+          ResponseCode.Update_Candidate.getMessage());
     } else { 
     	String candidateId = generatedcandidateId();
         String encryptedResumeId = encryptionService.encrypt(request.getResumeMediaId());
@@ -65,9 +65,9 @@ public class CandidateServiceImpl implements CandidateService {
         Candidate savedCandidate = repo.save(newCandidate);
         response = CandidateMapper.toDto(
             savedCandidate,
-            ResponseCode.Add_Candidate.getMessage(),
-            ResponseCode.Add_Candidate.getCode()
-        ); 
+            ResponseCode.Add_Candidate.getCode(),
+            ResponseCode.Add_Candidate.getMessage());
+
      
     } 
     return response;
@@ -81,13 +81,14 @@ public class CandidateServiceImpl implements CandidateService {
     if (candidateData.isPresent()) {
       int rowsDeleted = repo.deleteByresumeMediaId(resumeMediaId);
       if (rowsDeleted > 0) {
+    	  response.setResponseCode(ResponseCode.Delete_Candidate.getCode());
         response.setMessage(ResponseCode.Delete_Candidate.getMessage());
-        response.setResponseCode(ResponseCode.Delete_Candidate.getCode());
-      }
+            }
 
     } else {
+       response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
       response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
-      response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
+     
     }
 
     return response;
@@ -102,8 +103,8 @@ public class CandidateServiceImpl implements CandidateService {
                 candidateEntity ->
                     CandidateMapper.toDto(
                         candidateEntity,
-                        ResponseCode.Search_Candidate.getMessage(),
-                        ResponseCode.Search_Candidate.getCode()))
+                        ResponseCode.Search_Candidate.getCode(),
+                        ResponseCode.Search_Candidate.getMessage()))
             .collect(Collectors.toList());
     return response;
   }
@@ -114,12 +115,14 @@ public class CandidateServiceImpl implements CandidateService {
     if (candidateData.isPresent()) {
       return CandidateMapper.toDto(
           candidateData.get(),
-          ResponseCode.Search_Candidate.getMessage(),
-          ResponseCode.Search_Candidate.getCode());
+          ResponseCode.Search_Candidate.getCode(),
+          ResponseCode.Search_Candidate.getMessage());
+         
     } else {
       CandidateResponse response = new CandidateResponse();
-      response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
       response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
+      response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
+   
       return response;
     }
   }
