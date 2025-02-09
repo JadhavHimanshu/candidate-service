@@ -20,7 +20,7 @@ public class CandidateMapper {
   public static CandidateResponse toDto(Candidate candidate, String message, String code) {
     CandidateResponse response = new CandidateResponse();
     response.setMessage(message);
-    response.setResponseCode(code);
+    response.setCode(code);
     response.setFirstName(candidate.getFirstName());
     response.setMiddleName(candidate.getMiddleName());
     response.setLastName(candidate.getLastName());

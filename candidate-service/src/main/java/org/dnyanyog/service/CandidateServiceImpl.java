@@ -39,7 +39,7 @@ public class CandidateServiceImpl implements CandidateService {
          ResponseCode.Search_Candidate.getMessage());
     } else {
       CandidateResponse response = new CandidateResponse();
-      response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
+      response.setCode(ResponseCode.Candidate_Not_Found.getCode());
       response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
       return response;
     }
@@ -81,12 +81,12 @@ public class CandidateServiceImpl implements CandidateService {
     if (candidateData.isPresent()) {
       int rowsDeleted = repo.deleteByresumeMediaId(resumeMediaId);
       if (rowsDeleted > 0) {
-    	  response.setResponseCode(ResponseCode.Delete_Candidate.getCode());
+    	  response.setCode(ResponseCode.Delete_Candidate.getCode());
         response.setMessage(ResponseCode.Delete_Candidate.getMessage());
             }
 
     } else {
-       response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
+       response.setCode(ResponseCode.Candidate_Not_Found.getCode());
       response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
      
     }
@@ -120,7 +120,7 @@ public class CandidateServiceImpl implements CandidateService {
          
     } else {
       CandidateResponse response = new CandidateResponse();
-      response.setResponseCode(ResponseCode.Candidate_Not_Found.getCode());
+      response.setCode(ResponseCode.Candidate_Not_Found.getCode());
       response.setMessage(ResponseCode.Candidate_Not_Found.getMessage());
    
       return response;
