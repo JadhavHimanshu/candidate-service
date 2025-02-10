@@ -48,6 +48,7 @@ public class CandidateServiceTest {
         .setVacancy(3);
     Mockito.when(repo.save(Mockito.any())).thenReturn(candidateEntity);
     CandidateResponse response = candidateService.addOrUpdateCandidate(request);
+   
     Assert.assertEquals(ResponseCode.Add_Candidate.getCode(), response.getCode());
     Assert.assertEquals(ResponseCode.Add_Candidate.getMessage(), response.getMessage());
     Assert.assertNotNull(response);
@@ -80,9 +81,11 @@ public class CandidateServiceTest {
     Mockito.when(repo.findByresumeMediaId(23)).thenReturn(Optional.of(candidateEntity));
 
     Mockito.when(repo.save(Mockito.any())).thenAnswer(invocation -> invocation.getArgument(0));
-
-    Assert.assertEquals(ResponseCode.Update_Candidate.getMessage(), response.getMessage());
+   
+   
     Assert.assertEquals(ResponseCode.Update_Candidate.getCode(), response.getCode());
+    Assert.assertEquals(ResponseCode.Update_Candidate.getMessage(), response.getMessage());
+  
     Assert.assertNotNull(response);
   }
 
@@ -100,8 +103,10 @@ public class CandidateServiceTest {
     Mockito.when(repo.findByresumeMediaId(24)).thenReturn(Optional.empty());
     CandidateResponse response = candidateService.addOrUpdateCandidate(updateRequest);
     Assert.assertNotNull(response, "Response should not be null");
+   
     Assert.assertEquals(ResponseCode.Candidate_Not_Found.getCode(), response.getCode());
     Assert.assertEquals(ResponseCode.Candidate_Not_Found.getMessage(), response.getMessage());
+   
     Mockito.verify(repo, Mockito.never()).save(Mockito.any());
   }
 
@@ -117,8 +122,10 @@ public class CandidateServiceTest {
     existingCandidate.setEmail("jadhavhimanshu123@gmail.com");
     Mockito.when(repo.findByresumeMediaId(23)).thenReturn(Optional.of(existingCandidate));
     CandidateResponse response = candidateService.findByresumeMediaId(23);
+  
     Assert.assertEquals(ResponseCode.Search_Candidate.getCode(), response.getCode());
     Assert.assertEquals(ResponseCode.Search_Candidate.getMessage(), response.getMessage());
+   
     Mockito.verify(repo).findByresumeMediaId(23);
   }
 
@@ -126,9 +133,9 @@ public class CandidateServiceTest {
   public void findByResumeMediaId_NotFound() throws Exception {
     Mockito.when(repo.findByresumeMediaId(23)).thenReturn(Optional.empty());
     CandidateResponse response = candidateService.findByresumeMediaId(23);
+  
     Assert.assertEquals(ResponseCode.Candidate_Not_Found.getCode(), response.getCode());
     Assert.assertEquals(ResponseCode.Candidate_Not_Found.getMessage(), response.getMessage());
-
     Mockito.verify(repo).findByresumeMediaId(23);
   }
 
@@ -148,6 +155,7 @@ public class CandidateServiceTest {
     CandidateResponse response = candidateService.deleteByresumeMediaId(23);
     Assert.assertEquals(ResponseCode.Delete_Candidate.getCode(), response.getCode());
     Assert.assertEquals(ResponseCode.Delete_Candidate.getMessage(), response.getMessage());
+
     Mockito.verify(repo).findByresumeMediaId(23);
 
     Mockito.verify(repo).deleteByresumeMediaId(23);

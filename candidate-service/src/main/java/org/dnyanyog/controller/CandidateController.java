@@ -34,7 +34,6 @@ public class CandidateController {
  } else {
 	 return candidateService.addOrUpdateCandidate(request);
    } 
-    
   }
 
   @GetMapping(path = "/candidate_search/{resumeMediaId}")

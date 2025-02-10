@@ -1,11 +1,11 @@
 package org.dnyanyog.common;
 
 public enum ResponseCode {
-  Add_Candidate("200", "Candidate Added Sucessfully"),
-  Update_Candidate("200", " Candidate Updated Sucessfully"),
-  Search_Candidate("200", " Candidate Found "),
-  Delete_Candidate("200", "Candidate Deleted Sucessfully"),
-  Candidate_Not_Found("404", "Candidate Not Found");
+  Add_Candidate("Candidate Added Sucessfully", "200"),
+  Update_Candidate("Candidate Updated Sucessfully", "200"),
+  Search_Candidate("Candidate Found", "200"),
+  Delete_Candidate("Candidate Deleted Sucessfully", "200"),
+  Candidate_Not_Found("Candidate Added Sucessfully", "200");
 
   private final String code;
   private final String message;
