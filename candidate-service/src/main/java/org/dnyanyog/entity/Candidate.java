@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Candidate {
   @Id
-  @Column(name = "can_code", nullable = false, updatable = false, insertable = false)
+  @Column(name = "candidate_code", nullable = false, updatable = false, insertable = false)
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long candidatecode;
 

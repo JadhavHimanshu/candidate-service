@@ -13,11 +13,12 @@ public class CandidateMapper {
         .setEmail(request.getEmail())
         .setMobile(request.getMobile())
         .setResumeMediaId(request.getResumeMediaId())
-        .setVacancy(request.getVacancy());
+        .setVacancy(request.getVacancy()); 
+       
     
   }
 
-  public static CandidateResponse toDto(Candidate candidate, String message, String code) {
+  public static CandidateResponse toDto(Candidate candidate, String code , String message) {
     CandidateResponse response = new CandidateResponse();
     response.setMessage(message);
     response.setCode(code);
