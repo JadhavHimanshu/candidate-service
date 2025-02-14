@@ -20,7 +20,7 @@ public class CandidateResponse {
   private Long candidatecode;
   private String candidateId;
 public String getMessage() {
-	return message;
+	return message;                       
 }
 public void setMessage(String message) {
 	this.message = message;

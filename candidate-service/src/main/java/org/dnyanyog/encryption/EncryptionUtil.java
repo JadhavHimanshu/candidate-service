@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EncryptionUtil {
-  private static final String Secret_Key = "nNdOpe1rP4OhtnKiFf7smtujfMUgo5LYHAkwmooo790=";
-  private static final String Algorithm = "AES";
-  private static SecretKey secretKey;
-  private static Cipher cipher;
+  public static final String Secret_Key = "nNdOpe1rP4OhtnKiFf7smtujfMUgo5LYHAkwmooo790=";
+  public static final String Algorithm = "AES";
+  public static SecretKey secretKey;
+  public static Cipher cipher;
 
   static {
     byte[] decodedKey = Base64.getDecoder().decode(Secret_Key);
