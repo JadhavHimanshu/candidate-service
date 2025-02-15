@@ -28,7 +28,7 @@ public class EncryptionUtil {
     secretKey = new SecretKeySpec(decodedKey, Algorithm);
     try {
       cipher = Cipher.getInstance(Algorithm);
-      cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+      cipher.init(Cipher.DECRYPT_MODE, secretKey);
     } catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException e) {
       e.printStackTrace();
     }
