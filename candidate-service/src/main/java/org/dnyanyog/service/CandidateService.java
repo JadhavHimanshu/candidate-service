@@ -11,7 +11,7 @@ public interface CandidateService {
 
  // public CandidateResponse updateCandidate(CandidateRequest request) throws Exception;
 
-  public CandidateResponse deleteByresumeMediaId(long resumeMediaId);
+  public CandidateResponse deleteByresumeMediaId(Integer resumeMediaId);
 
   public List<CandidateResponse> getAllCandidates(CandidateRequest requet);
 

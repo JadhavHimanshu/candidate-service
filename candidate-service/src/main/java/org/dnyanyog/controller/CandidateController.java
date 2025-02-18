@@ -8,6 +8,7 @@ import org.dnyanyog.dto.CandidateResponse;
 import org.dnyanyog.service.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/v1/auth") 
+ @Component
 public class CandidateController {
 
   @Autowired private CandidateService candidateService;
@@ -61,7 +63,7 @@ public class CandidateController {
 
   @DeleteMapping(path = "/candidate_delete/{resumeMediaId}")
   @Transactional
-  public CandidateResponse deleteCandidate(@Valid @PathVariable long resumeMediaId) {
+  public CandidateResponse deleteCandidate(@Valid @PathVariable Integer resumeMediaId) {
     return candidateService.deleteByresumeMediaId(resumeMediaId);
   }
 }

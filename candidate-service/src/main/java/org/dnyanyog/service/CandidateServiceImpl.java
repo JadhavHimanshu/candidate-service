@@ -75,7 +75,7 @@ public class CandidateServiceImpl implements CandidateService {
   }
 
   @Override
-  public CandidateResponse deleteByresumeMediaId(long resumeMediaId) {
+  public CandidateResponse deleteByresumeMediaId(Integer resumeMediaId) {
     CandidateResponse response = new CandidateResponse();
     Optional<Candidate> candidateData = this.repo.findByresumeMediaId(resumeMediaId);
     if (candidateData.isPresent()) {
