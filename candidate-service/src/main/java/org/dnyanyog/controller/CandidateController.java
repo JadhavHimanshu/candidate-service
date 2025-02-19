@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/auth") 
+@RequestMapping  //("/api/v1/auth") 
  @Component
 public class CandidateController {
 
   @Autowired private CandidateService candidateService;
 
   @PostMapping(
-      path = "/candidate",
+      path = "/api/v1/auth/candidate",
       consumes = {"application/json", "application/xml"},
       produces = {"application/json", "application/xml"})
   public CandidateResponse addOrUpdateCandidate(@Valid @RequestBody CandidateRequest request)
@@ -38,14 +38,14 @@ public class CandidateController {
    } 
   }
 
-  @GetMapping(path = "/candidate_search/{resumeMediaId}")
+  @GetMapping(path = "/api/v1/auth/candidate_search/{resumeMediaId}")
   public ResponseEntity<CandidateResponse> searchCandidate(
       @Valid @PathVariable Integer resumeMediaId) {
     CandidateResponse response = candidateService.findByresumeMediaId(resumeMediaId);
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping(path = "/candidate_search_bymobile/{mobile}")
+  @GetMapping(path = "/api/v1/auth/candidate_search_bymobile/{mobile}")
   public ResponseEntity<CandidateResponse> searchCandidatebymobile(
       @Valid @PathVariable Integer mobile) {
     CandidateResponse response = candidateService.findBymobile(mobile);
@@ -53,7 +53,7 @@ public class CandidateController {
   }
 
   @GetMapping(
-      path = "/candidates",
+      path = "/api/v1/auth/candidates",
       produces = {"application/json", "application/xml"})
   public ResponseEntity<List<CandidateResponse>> getAllCandidates(
       @RequestBody CandidateRequest request) {
