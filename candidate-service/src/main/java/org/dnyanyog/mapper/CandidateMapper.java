@@ -14,7 +14,7 @@ public class CandidateMapper {
         .setMobile(request.getMobile())
         .setResumeMediaId(request.getResumeMediaId())
         .setVacancy(request.getVacancy()); 
-       
+        
     
   }
 
